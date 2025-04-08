@@ -3,41 +3,45 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation"; // 👈 используем этот хук
-
+import { useParams } from "next/navigation"; 
+import img1 from "@/assets/1032507996_2_0_2994_1683_1920x0_80_0_0_9077724711dc0df225d5f4fc56fe01f6.jpg"
+import img2 from "@/assets/images.jpg"
+import img3 from "@/assets/images1.jpg"
+import img4 from "@/assets/pic_l_min.jpg"
+import img5 from "@/assets/images (1).jpg"
 const ByIdPage = () => {
   const [product, setProduct] = useState<any>(null);
-  const params = useParams(); // 👈 получаем параметры маршрута
-  const id = params?.id; // 👈 достаём id
+  const params = useParams();
+  const id = params?.id; 
 
   const data = [
     {
       id: 1,
-      img: "https://cdnn1.img.sputnik.tj/img/07e4/0c/17/1032507996_2:0:2994:1683_1920x0_80_0_0_9077724711dc0df225d5f4fc56fe01f6.jpg",
+      img: img1,
       name: "Купить продукты",
       status: false,
     },
     {
       id: 2,
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWwh_ivbdUj29sf2lfQZc6NbfdlAxxwCpe9w&s",
+      img:img2,
       name: "Позвонить другу",
       status: true,
     },
     {
       id: 3,
-      img: "https://memchik.ru/images/memes/5a5f9b72b1c7e346775d5865.jpg",
+      img: img3,
       name: "Сделать домашку",
       status: false,
     },
     {
       id: 4,
-      img: "https://huss.com.ua/wp-content/uploads/2022/04/pic_l_min.jpg",
+      img: img4,
       name: "Прочитать книгу",
       status: true,
     },
     {
       id: 5,
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsliUkMrkA8jH3HUc1kw8vIJ-xfO6WKr_lhA&s",
+      img:img5,
       name: "Выгулять собаку",
       status: false,
     },
