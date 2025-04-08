@@ -1,24 +1,16 @@
 "use client";
-import React, { useState, useEffect } from "react";
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-
-import { useRouter } from "next/router";
-import Image from 'next/image'
-
-interface Itodo {
-  id: number;
-  img: string;
-  name: string;
-  status: boolean;
-}
+import { useParams } from "next/navigation"; // 👈 используем этот хук
 
 const ByIdPage = () => {
-  const [product, setProduct] = useState<Itodo | null>(null);
-  const router = useRouter();
-  const { id } = router.query;
-  
+  const [product, setProduct] = useState<any>(null);
+  const params = useParams(); // 👈 получаем параметры маршрута
+  const id = params?.id; // 👈 достаём id
 
-  const data: Itodo[] = [
+  const data = [
     {
       id: 1,
       img: "https://cdnn1.img.sputnik.tj/img/07e4/0c/17/1032507996_2:0:2994:1683_1920x0_80_0_0_9077724711dc0df225d5f4fc56fe01f6.jpg",
@@ -52,12 +44,12 @@ const ByIdPage = () => {
   ];
 
   useEffect(() => {
-    if (typeof id === 'string') {
+    if (id) {
       const idProduct = Number(id);
       const foundProduct = data.find((item) => item.id === idProduct);
       setProduct(foundProduct || null);
     }
-  }, [id,data]);
+  }, [id]);
 
   if (!product) {
     return <div className="p-6 text-red-600 font-semibold">Продукт не найден</div>;
@@ -66,7 +58,13 @@ const ByIdPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-100 to-white flex flex-col items-center justify-center p-6">
       <div className="bg-white shadow-xl rounded-2xl max-w-md w-full overflow-hidden">
-        <Image src={product.img} alt={product.name} className="h-64 w-full object-cover" />
+        <Image
+          src={product.img}
+          alt={product.name}
+          width={500}
+          height={300}
+          className="h-64 w-full object-cover"
+        />
         <div className="p-6 text-center">
           <h1 className="text-2xl font-bold mb-3 text-gray-800">{product.name}</h1>
           <span
